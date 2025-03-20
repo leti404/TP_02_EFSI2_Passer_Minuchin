@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="script.js"></script>
+    <div class="container">
+        <h1>Formulario</h1>
+        <form>
+            <label for="mate">Nombre: </label>
+            <input type="text" id="nomb" oninput="Verificar3car()">
+            <p class="error" id="nomb3car"></p>
+
+            <label for="mate">Apellido: </label>
+            <input type="text" id="ape" oninput="Verificar3car2()">
+            <p class="error" id="ape3car"></p>
+
+            <label for="mate">Email: </label>
+            <input type="email" id="mail">
+
+            <label for="pass">Contraseña</label>
+            <input type="password" id="contra" oninput="VerificarFuerteContra()"> 
+            <p class="error" id="contraError"></p>
+
+            <label for="pass">Verificar Contraseña</label>
+            <input type="password" id="contraveri" oninput="VerificarContra()">
+
+            <p class="error" id="contraCoincide"></p>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+</body>
+</html>
