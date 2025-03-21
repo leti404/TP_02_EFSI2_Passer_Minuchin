@@ -47,21 +47,30 @@ function Verificar3car2()
 
 function VerificarFuerteContra()
 {
-    var correcto =[];
     const contra = document.getElementById("contra").value;
+    var correcto = "";
     if(contra.length < 8)
     {
-        correcto.push("La contrasña debe ser mayor que 7 caracteres");
+        correcto += "La contraseña debe tener mas de 7 caracteres"
     }
-    const tieneLetra = [a-zA-Z].test(contra);
-    if(!tieneLetra)
-    {
-        correcto.push("La contrasña debe contener un minimo de 1 letra");
+    const regex = /[a-zA-Z]/;
+    if (!regex.test(contra)) {
+        correcto += " Debe incluir un mínimo de una letra. ";
     }
-    const tieneNumero = d.test(contra);
-    if(!tieneNumero)
-    {
-        correcto.push("La contrasña debe contener un minimo de 1 numero");
+
+    const regexNumero = /\d/; 
+    if (!regexNumero.test(contra)) {
+        correcto += " Debe incluir al menos un número. ";
     }
     document.getElementById("contraError").innerHTML = correcto;
+}
+function VerificarMail()
+{
+    const mail = document.getElementById("mail").value;
+    var correcto = "";
+    if(!mail.includes("@") || !mail.includes(".com"))
+    {
+        correcto = "El mail ingresado no es valido"
+    }
+    document.getElementById("mailError").innerHTML = correcto;
 }
