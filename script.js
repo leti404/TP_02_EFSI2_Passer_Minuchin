@@ -73,4 +73,30 @@ function VerificarMail()
         correcto = "El mail ingresado no es valido"
     }
     document.getElementById("mailError").innerHTML = correcto;
+} 
+
+function ValidarForm()
+{
+    Verificar3car(); 
+    Verificar3car2(); 
+    VerificarContra(); 
+    VerificarMail(); 
+    VerificarFuerteContra(); 
+
+    const errores = document.querySelectorAll('.error');
+    let hayErrores = false;  
+    var text; 
+
+    errores.forEach((error) => {
+        if (error.innerHTML !== "") {
+            hayErrores = true;
+        }
+    });  
+
+    if (hayErrores) {
+        event.preventDefault(); // Prevenir el envío del formulario
+        text = "Por favor, corrige los errores antes de enviar el formulario.";
+    } 
+    document.getElementById("formError").innerHTML = text;
 }
+
