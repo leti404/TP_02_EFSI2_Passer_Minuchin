@@ -1,102 +1,97 @@
-function VerificarContra()
-{
-    var correcto;
+function VerificarContra() {
     const contra1 = document.getElementById("contra").value;
     const contra2 = document.getElementById("contraveri").value;
-    if(contra1 != contra2)
-    {
-        correcto = "Contraseñas no coinciden";
-    }
-    else
-    {
-        correcto="";
-    }
+    const msjError = document.getElementById("contraCoincide");
     
-    document.getElementById("contraCoincide").innerHTML = correcto;
-    
+    if (contra1 !== contra2) {
+        msjError.innerHTML = "Contraseñas no coinciden";
+        return false;
+    } else {
+        msjError.innerHTML = ""; 
+        return true;
+    }
 }
-function Verificar3car()
-{
-    var correcto;  
+
+function Verificar3car() {
     const nombre = document.getElementById("nomb").value;
-    if (nombre.length < 3) 
-    {
-        correcto = "El nombre debe ser mayor a 3 caracteres."
-    } 
-    else 
-    {
-        correcto="";
+    const msjError = document.getElementById("nomb3car");
+    
+    if (nombre.length < 4) {
+        msjError.innerHTML = "El nombre debe ser mayor a 3 caracteres.";
+        return false;
+    } else {
+        msjError.innerHTML = ""; 
+        return true;
     }
-    document.getElementById("nomb3car").innerHTML = correcto;
-} 
+}
 
-function Verificar3car2()
-{
-    var correcto;  
+function Verificar3car2() {
     const apellido = document.getElementById("ape").value;
-    if (apellido.length < 3) 
-    {
-        correcto = "El apellido debe ser mayor a 3 caracteres."
-    } 
-    else 
-    {
-        correcto="";
+    const msjError = document.getElementById("ape3car");
+    
+    if (apellido.length < 4) {
+        msjError.innerHTML = "El apellido debe ser mayor a 3 caracteres.";
+        return false;
+    } else {
+        msjError.innerHTML = ""; 
+        return true;
     }
-    document.getElementById("ape3car").innerHTML = correcto;
-} 
+}
 
-function VerificarFuerteContra()
-{
+function VerificarFuerteContra() {
     const contra = document.getElementById("contra").value;
-    var correcto = "";
-    if(contra.length < 8)
-    {
-        correcto += "La contraseña debe tener mas de 7 caracteres"
-    }
+    const msjError = document.getElementById("contraError");
+    let correcto = "";
+
     const regex = /[a-zA-Z]/;
-    if (!regex.test(contra)) {
-        correcto += " Debe incluir un mínimo de una letra. ";
-    }
+    const regexNumero = /\d/;
 
-    const regexNumero = /\d/; 
-    if (!regexNumero.test(contra)) {
-        correcto += " Debe incluir al menos un número. ";
-    }
-    document.getElementById("contraError").innerHTML = correcto;
-}
-function VerificarMail()
-{
-    const mail = document.getElementById("mail").value;
-    var correcto = "";
-    if(!mail.includes("@") || !mail.includes(".com"))
-    {
-        correcto = "El mail ingresado no es valido"
-    }
-    document.getElementById("mailError").innerHTML = correcto;
-} 
-
-function ValidarForm()
-{
-    Verificar3car(); 
-    Verificar3car2(); 
-    VerificarContra(); 
-    VerificarMail(); 
-    VerificarFuerteContra(); 
-
-    const errores = document.querySelectorAll('.error');
-    let hayErrores = false;  
-    var text; 
-
-    errores.forEach((error) => {
-        if (error.innerHTML !== "") {
-            hayErrores = true;
+    if (contra.length < 8 || !regex.test(contra) || !regexNumero.test(contra)) {
+        if (contra.length < 8) {
+            correcto += "La contraseña debe tener más de 7 caracteres. ";
         }
-    });  
-
-    if (hayErrores) {
-        event.preventDefault(); // Prevenir el envío del formulario
-        text = "Por favor, corrige los errores antes de enviar el formulario.";
-    } 
-    document.getElementById("formError").innerHTML = text;
+        if (!regex.test(contra)) {
+            correcto += "Debe incluir un mínimo de una letra. ";
+        }
+        if (!regexNumero.test(contra)) {
+            correcto += "Debe incluir al menos un número. ";
+        }
+        msjError.innerHTML = correcto;
+        return false;
+    } else {
+        msjError.innerHTML = ""; 
+        return true;
+    }
 }
+
+function VerificarMail() {
+    const mail = document.getElementById("mail").value;
+    const msjError = document.getElementById("mailError");
+    
+    if (!mail.includes("@") || !mail.includes(".com")) {
+        msjError.innerHTML = "El mail ingresado no es válido";
+        return false;
+    } else {
+        msjError.innerHTML = ""; 
+        return true;
+    }
+}
+
+function VerificarForm(event) {
+    event.preventDefault();
+
+    const nombreValido = Verificar3car();
+    const apellidoValido = Verificar3car2();
+    const emailValido = VerificarMail();
+    const contraValida = VerificarFuerteContra();
+    const contrasCoinciden = VerificarContra();
+
+    if (nombreValido && apellidoValido && emailValido && contraValida && contrasCoinciden) {
+        alert("Formulario enviado exitosamente!");
+        document.getElementById("miFormulario").submit();
+    } else {
+        alert("Por favor, corrige los errores antes de enviar el formulario.");
+    }
+}
+
 

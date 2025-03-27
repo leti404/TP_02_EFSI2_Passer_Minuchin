@@ -1,0 +1,154 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #6e7dff, #88c6d1);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background: linear-gradient(135deg, #2b2b2b, #121212);
+    color: #eee;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    margin: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode .container {
+    background-color: #333;
+    color: #ddd;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: inherit;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    display: block;
+    color: inherit;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+    border-color: #6e7dff;
+    box-shadow: 0 0 10px rgba(110, 125, 255, 0.5);
+    transform: scale(1.02);
+}
+
+body.dark-mode input {
+    background-color: #444;
+    color: #eee;
+    border-color: #555;
+}
+
+input:hover {
+    border-color: #88c6d1;
+}
+
+
+.error {
+    color: #ff4d4d;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #6e7dff;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #5b6bff;
+    transform: scale(1.05);
+}
+
+body.dark-mode button {
+    background-color: #555;
+}
+
+.toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6e7dff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+body.dark-mode .toggle-btn {
+    background-color: #444;
+}
+
+.toggle-btn:hover {
+    background-color: #88c6d1;
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    input, button {
+        font-size: 1rem;
+        padding: 12px;
+    }
+}
